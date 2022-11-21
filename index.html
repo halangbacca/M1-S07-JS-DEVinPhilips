@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="app.js" defer></script>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="icon" href="assets/favicon.png" />
+    <title>DEVinKnowledge</title>
+  </head>
+
+  <body>
+    <div id="conteiner">
+      <div id="cadastro">
+
+        <!-- Cabeçalho -->
+        <div id="cabecalho">
+          <img id="logo" src="assets/logo.png" alt="logo" />
+          <div id="tituloSobrescrito">
+            <p>DEVin</p>
+          </div>
+          <div id="tituloSubscrito">
+            <h1>Knowledge</h1>
+          </div>
+        </div>
+        <div id="subtitulo">
+          <p>Learn, Code and Save</p>
+        </div>
+
+        <!-- Formulário de cadastro -->
+        <div id="formulario">
+          <form method="post">
+            
+            <!-- Título da dica -->
+            <div id="divInputTitulo">
+              <label for="titulo">Título:</label>
+              <input
+                type="text"
+                id="titulo"
+                name="titulo"
+                placeholder="Digite um título"
+                minlength="8"
+                maxlength="64"
+                required
+              />
+            </div>
+
+            <!-- Linguagem da dica -->
+            <div id="divInputLinguagem">
+              <label for="linguagem">Linguagem/Skill:</label>
+              <input
+                type="text"
+                id="linguagem"
+                name="linguagem"
+                placeholder="Digite uma linguagem ou skill"
+                minlength="2"
+                maxlength="16"
+                required
+              />
+            </div>
+
+            <!-- Categoria da dica -->
+            <div id="divInputCategoria">
+              <label for="categoria">Categoria:</label>
+              <select id="categoria" name="categoria" required>
+                <option value="" hidden>Selecione uma categoria</option>
+                <option value="frontend">Front End</option>
+                <option value="backend">Back End</option>
+                <option value="fullstack">Full Stack</option>
+                <option value="softskill">Soft Skill</option>
+              </select>
+            </div>
+
+            <!-- Descrição da dica -->
+            <div id="divInputDescricao">
+              <label for="descricao">Descrição:</label>
+              <textarea
+                id="descricao"
+                name="descricao"
+                placeholder="Detalhe a sua dica"
+                minlength="16"
+                maxlength="512"
+                required
+              ></textarea>
+            </div>
+
+            <!-- Vídeo da dica -->
+            <div id="divInputVideo">
+              <label id="labelVideo" for="video">Vídeo do YouTube:</label>
+              <input
+                type="url"
+                id="video"
+                name="video"
+                placeholder="https://youtube.com/"
+              />
+            </div>
+
+            <!-- Botões -->
+            <div id="botoesForm">
+              <!-- Botão de limpar -->
+              <button type="reset" id="botaoLimpar">Limpar</button>
+              <!-- Botão de salvar - chama a função salvarDica() ao ser pressionado -->
+              <button type="submit" onclick="salvarDica()" id="botaoSalvar">
+                Salvar
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- Contadores e cards -->
+      <div id="cards">
+        <!-- Contadores -->
+        <div id="contadores">
+          <div id="contadorTotal">
+            <p>Total</p>
+            <p id="total">0</p>
+          </div>
+          <div id="contadorFrontEnd">
+            <p>Front End</p>
+            <p id="frontEnd">0</p>
+          </div>
+          <div id="contadorBackEnd">
+            <p>Back End</p>
+            <p id="backEnd">0</p>
+          </div>
+          <div id="contadorFullStack">
+            <p>Full Stack</p>
+            <p id="fullStack">0</p>
+          </div>
+          <div id="contadorSoftSkill">
+            <p>Soft Skill</p>
+            <p id="softSkill">0</p>
+          </div>
+        </div>
+
+        <!-- Caixa de pesquisa -->
+        <div id="pesquisa">
+          <form method="post">
+            <input
+              type="text"
+              id="inputPesquisa"
+              placeholder="Pesquise uma dica..."
+            />
+
+            <!-- Botão de pesquisar - chama a função pesquisaDica() ao ser pressionado -->
+            <button type="button" id="botaoPesquisa">
+              <img
+                id="lupa"
+                src="assets/lupa.png"
+                height="50px"
+                alt="lupa"
+                onclick="pesquisaDica()"
+              />
+            </button>
+
+            <!-- Botão de limpeza da caixa de pesquisa - chama a função imprimeDica() ao ser pressionado -->
+            <button type="reset" id="botaoLimparPesquisa">
+              <img
+                id="limparPesquisa"
+                src="assets/apagar.png"
+                height="50px"
+                alt="limparPesquisa"
+                onclick="imprimeDica()"
+              />
+            </button>
+          </form>
+        </div>
+
+        <!-- Cards das dicas -->
+        <div id="cardDicas">
+          <div id="modeloCard">
+            <div id="tituloDica">
+              <p>Título</p>
+            </div>
+            <div id="linguagemDica">
+              <p><strong>Linguagem/Skill: </strong></p>
+            </div>
+            <div id="categoriaDica">
+              <p>Categoria</p>
+            </div>
+            <div id="descricaoDica">
+              <p>Descrição</p>
+            </div>
+
+            <!-- Botões do card -->
+            <div id="botoesCard">
+              <!-- Botão de vídeo do YouTube -->
+              <div id="divBotaoVideo">
+                <button type="button" id="botaoVideo">
+                  <img
+                    id="iconeVideo"
+                    src="assets/video.png"
+                    alt="iconeVideo"
+                  />
+                </button>
+              </div>
+
+              <!-- Botão de editar o card -->
+              <div id="divBotaoEditar">
+                <button type="button" id="botaoEditar">
+                  <img
+                    id="iconeEditar"
+                    src="assets/editar.png"
+                    alt="iconeEditar"
+                  />
+                </button>
+              </div>
+
+              <!-- Botão de excluir o card -->
+              <div id="divBotaoExcluir">
+                <button type="button" id="botaoExcluir">
+                  <img
+                    id="iconeLixeira"
+                    src="assets/lixeira.png"
+                    alt="iconeLixeira"
+                  />
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
